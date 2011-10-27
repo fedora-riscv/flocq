@@ -14,7 +14,7 @@ URL:            http://flocq.gforge.inria.fr/
 Source0:        https://gforge.inria.fr/frs/download.php/28389/%{name}-%{version}.tar.gz
 
 BuildRequires:  coq
-Requires:       coq = %(coqc -v | sed -nr "s/.* version ([[:alnum:]\.]+) .*/\1/p")
+Requires:       coq%{?_isa} = 8.3pl2-3
 
 # This must match the corresponding line in the coq spec
 ExclusiveArch: %{ocaml_arches}
