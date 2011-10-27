@@ -16,6 +16,9 @@ Source0:        https://gforge.inria.fr/frs/download.php/28389/%{name}-%{version
 BuildRequires:  coq
 Requires:       coq = %(coqc -v | sed -nr "s/.* version ([[:alnum:]\.]+) .*/\1/p")
 
+# This must match the corresponding line in the coq spec
+ExclusiveArch: alpha armv4l %{ix86} ia64 x86_64 ppc sparc sparcv9
+
 %description
 Flocq (Floats for Coq) is a floating-point formalization for the Coq
 system.  It provides a comprehensive library of theorems on a
