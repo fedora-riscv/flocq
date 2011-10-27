@@ -17,7 +17,7 @@ BuildRequires:  coq
 Requires:       coq = %(coqc -v | sed -nr "s/.* version ([[:alnum:]\.]+) .*/\1/p")
 
 # This must match the corresponding line in the coq spec
-ExclusiveArch: alpha armv4l %{ix86} ia64 x86_64 ppc sparc sparcv9
+ExclusiveArch: %{ocaml_arches}
 
 %description
 Flocq (Floats for Coq) is a floating-point formalization for the Coq
