@@ -5,7 +5,7 @@
 
 Name:           flocq
 Version:        1.4.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 Group:          Applications/Engineering
@@ -13,8 +13,8 @@ License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
 Source0:        https://gforge.inria.fr/frs/download.php/28389/%{name}-%{version}.tar.gz
 
-BuildRequires:  coq
-Requires:       coq%{?_isa} = 8.3pl2-3
+BuildRequires:  coq%{?_isa} = 8.3pl2
+Requires:       coq%{?_isa} = 8.3pl2
 
 # This must match the corresponding line in the coq spec
 ExclusiveArch: %{ocaml_arches}
@@ -71,6 +71,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Fri Oct 28 2011 Jerry James <loganjerry@gmail.com> - 1.4.0-3
+- Fix broken version numbers in BR and Requires
+
 * Wed Oct 26 2011 Jerry James <loganjerry@gmail.com> - 1.4.0-2
 - Split out a -devel subpackage
 
