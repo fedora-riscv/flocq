@@ -4,14 +4,14 @@
 %global flocqdir %{_libdir}/coq/user-contrib/Flocq
 
 Name:           flocq
-Version:        1.4.0
-Release:        3%{?dist}
+Version:        2.0.0
+Release:        1%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 Group:          Applications/Engineering
 License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
-Source0:        https://gforge.inria.fr/frs/download.php/28389/%{name}-%{version}.tar.gz
+Source0:        https://gforge.inria.fr/frs/download.php/29903/%{name}-%{version}.tar.gz
 
 BuildRequires:  coq%{?_isa} = 8.3pl2
 Requires:       coq%{?_isa} = 8.3pl2
@@ -25,13 +25,18 @@ system.  It provides a comprehensive library of theorems on a
 multi-radix multi-precision arithmetic.  It also supports efficient
 numerical computations inside Coq.
 
-%package devel
+%package source
 Summary:        Source Coq files
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 
-%description devel
+# Remove this once F16 reaches EOL.
+Obsoletes:      %{name}-devel < 2.0.0
+Provides:       %{name}-devel = %{version}-%{release}
+
+%description source
 This package contains the source Coq files for flocq.  These files are
-not needed by consuming packages.
+not needed to use flocq.  They are made available for informational
+purposes.
 
 %prep
 %setup -q
@@ -47,6 +52,7 @@ make all html
 make install DESTDIR=$RPM_BUILD_ROOT
 
 # Also install the source files
+cp -p src/*.v $RPM_BUILD_ROOT%{flocqdir}
 cp -p src/Appli/*.v $RPM_BUILD_ROOT%{flocqdir}/Appli
 cp -p src/Calc/*.v $RPM_BUILD_ROOT%{flocqdir}/Calc
 cp -p src/Core/*.v $RPM_BUILD_ROOT%{flocqdir}/Core
@@ -54,23 +60,22 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 
 %files
 %doc AUTHORS COPYING NEWS README html
-%dir %{flocqdir}
-%dir %{flocqdir}/Appli
-%dir %{flocqdir}/Calc
-%dir %{flocqdir}/Core
-%dir %{flocqdir}/Prop
-%{flocqdir}/Appli/*.vo
-%{flocqdir}/Calc/*.vo
-%{flocqdir}/Core/*.vo
-%{flocqdir}/Prop/*.vo
+%{flocqdir}
+%exclude %{flocqdir}/*.v
+%exclude %{flocqdir}/*/*.v
 
-%files devel
+%files source
+%{flocqdir}/*.v
 %{flocqdir}/Appli/*.v
 %{flocqdir}/Calc/*.v
 %{flocqdir}/Core/*.v
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Mon Dec 12 2011 Jerry James <loganjerry@gmail.com> - 2.0.0-1
+- New upstream release
+- Change subpackage from -devel to -source to match gappalib-coq.
+
 * Fri Oct 28 2011 Jerry James <loganjerry@gmail.com> - 1.4.0-3
 - Fix broken version numbers in BR and Requires
 
