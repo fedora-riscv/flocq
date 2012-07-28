@@ -2,22 +2,21 @@
 # location, so we build it as an arch-specific package.
 %global debug_package %{nil}
 %global flocqdir %{_libdir}/coq/user-contrib/Flocq
-%global coqver 8.3pl3
+%global coqver 8.3pl4
 
 Name:           flocq
-Version:        2.0.0
-Release:        4%{?dist}
+Version:        2.1.0
+Release:        1%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 Group:          Applications/Engineering
 License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
-Source0:        https://gforge.inria.fr/frs/download.php/29903/%{name}-%{version}.tar.gz
+Source0:        https://gforge.inria.fr/frs/download.php/30884/%{name}-%{version}.tar.gz
 
 BuildRequires:  coq%{?_isa} = %{coqver}
 Requires:       coq%{?_isa} = %{coqver}
 
-# This must match the corresponding line in the coq spec
 ExclusiveArch: %{ocaml_arches}
 
 %description
@@ -73,6 +72,10 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Sat Jul 28 2012 Jerry James <loganjerry@gmail.com> - 2.1.0-1
+- New upstream release
+- Build for OCaml 4.0.0 and coq 8.3pl4
+
 * Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.0.0-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
