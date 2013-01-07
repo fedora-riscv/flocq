@@ -2,11 +2,11 @@
 # location, so we build it as an arch-specific package.
 %global debug_package %{nil}
 %global flocqdir %{_libdir}/coq/user-contrib/Flocq
-%global coqver 8.4
+%global coqver 8.4pl1
 
 Name:           flocq
 Version:        2.1.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 Group:          Applications/Engineering
@@ -72,6 +72,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Mon Jan  7 2013 Jerry James <loganjerry@gmail.com> - 2.1.0-3
+- Rebuild for coq 8.4pl1
+
 * Tue Aug 21 2012 Jerry James <loganjerry@gmail.com> - 2.1.0-2
 - Rebuild for coq 8.4
 
