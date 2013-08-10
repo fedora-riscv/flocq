@@ -5,15 +5,16 @@
 %global coqver 8.4pl2
 
 Name:           flocq
-Version:        2.1.0
-Release:        6%{?dist}
+Version:        2.2.0
+Release:        1%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 Group:          Applications/Engineering
 License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
-Source0:        https://gforge.inria.fr/frs/download.php/30884/%{name}-%{version}.tar.gz
+Source0:        https://gforge.inria.fr/frs/download.php/32825/%{name}-%{version}.tar.gz
 
+BuildRequires:  remake
 BuildRequires:  coq%{?_isa} = %{coqver}
 Requires:       coq%{?_isa} = %{coqver}
 
@@ -29,10 +30,6 @@ numerical computations inside Coq.
 Summary:        Source Coq files
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 
-# Remove this once F16 reaches EOL.
-Obsoletes:      %{name}-devel < 2.0.0
-Provides:       %{name}-devel = %{version}-%{release}
-
 %description source
 This package contains the source Coq files for flocq.  These files are
 not needed to use flocq.  They are made available for informational
@@ -45,11 +42,14 @@ purposes.
 # We do NOT want to specify --libdir, and we don't need CFLAGS, etc.
 ./configure
 
-# %%{?_smp_mflags} sometimes succeeds, sometimes fails...
-make all html
+# Use the system remake
+rm -f remake
+ln -s %{_bindir}/remake remake
+remake %{?_smp_mflags} all doc
 
 %install
-make install DESTDIR=$RPM_BUILD_ROOT
+sed -i "s,%{_libdir},$RPM_BUILD_ROOT%{_libdir}," Remakefile
+remake install
 
 # Also install the source files
 cp -p src/*.v $RPM_BUILD_ROOT%{flocqdir}
@@ -72,6 +72,10 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Sat Aug 10 2013 Jerry James <loganjerry@gmail.com> - 2.2.0-1
+- New upstream release
+- Builds now done with remake instead of make
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.1.0-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
