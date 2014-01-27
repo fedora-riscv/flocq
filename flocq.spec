@@ -5,8 +5,8 @@
 %global coqver 8.4pl3
 
 Name:           flocq
-Version:        2.2.0
-Release:        2%{?dist}
+Version:        2.2.2
+Release:        1%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 Group:          Applications/Engineering
@@ -72,6 +72,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Mon Jan 27 2014 Jerry James <loganjerry@gmail.com> - 2.2.2-1
+- New upstream release
+
 * Wed Dec 18 2013 Jerry James <loganjerry@gmail.com> - 2.2.0-2
 - Rebuild for coq 8.4pl3
 
