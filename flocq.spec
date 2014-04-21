@@ -5,20 +5,18 @@
 %global coqver 8.4pl3
 
 Name:           flocq
-Version:        2.2.2
+Version:        2.3.0
 Release:        1%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 Group:          Applications/Engineering
 License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
-Source0:        https://gforge.inria.fr/frs/download.php/32825/%{name}-%{version}.tar.gz
+Source0:        https://gforge.inria.fr/frs/download.php/33502/%{name}-%{version}.tar.gz
 
 BuildRequires:  remake
 BuildRequires:  coq%{?_isa} = %{coqver}
 Requires:       coq%{?_isa} = %{coqver}
-
-ExclusiveArch: %{ocaml_arches}
 
 %description
 Flocq (Floats for Coq) is a floating-point formalization for the Coq
@@ -72,6 +70,10 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Mon Apr 21 2014 Jerry James <loganjerry@gmail.com> - 2.3.0-1
+- New upstream release
+- Remove ocaml_arches macro (bz 1087794)
+
 * Mon Jan 27 2014 Jerry James <loganjerry@gmail.com> - 2.2.2-1
 - New upstream release
 
