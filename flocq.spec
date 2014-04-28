@@ -18,6 +18,8 @@ BuildRequires:  remake
 BuildRequires:  coq%{?_isa} = %{coqver}
 Requires:       coq%{?_isa} = %{coqver}
 
+ExclusiveArch: %{ocaml_arches}
+
 %description
 Flocq (Floats for Coq) is a floating-point formalization for the Coq
 system.  It provides a comprehensive library of theorems on a
@@ -72,7 +74,6 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %changelog
 * Mon Apr 21 2014 Jerry James <loganjerry@gmail.com> - 2.3.0-1
 - New upstream release
-- Remove ocaml_arches macro (bz 1087794)
 
 * Mon Jan 27 2014 Jerry James <loganjerry@gmail.com> - 2.2.2-1
 - New upstream release
