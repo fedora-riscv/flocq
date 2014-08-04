@@ -6,7 +6,7 @@
 
 Name:           flocq
 Version:        2.3.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 Group:          Applications/Engineering
@@ -57,7 +57,8 @@ cp -p src/Core/*.v $RPM_BUILD_ROOT%{flocqdir}/Core
 cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 
 %files
-%doc AUTHORS COPYING NEWS README html
+%doc AUTHORS NEWS README html
+%license COPYING
 %{flocqdir}
 %exclude %{flocqdir}/*.v
 %exclude %{flocqdir}/*/*.v
@@ -70,6 +71,10 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Mon Aug  4 2014 Jerry James <loganjerry@gmail.com> - 2.3.0-4
+- Bump and rebuild as part of ocaml rebuild
+- Fix license handling
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.3.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
