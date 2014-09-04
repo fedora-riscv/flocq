@@ -5,14 +5,14 @@
 %global coqver 8.4pl4
 
 Name:           flocq
-Version:        2.3.0
-Release:        4%{?dist}
+Version:        2.4.0
+Release:        1%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 Group:          Applications/Engineering
 License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
-Source0:        https://gforge.inria.fr/frs/download.php/33502/%{name}-%{version}.tar.gz
+Source0:        https://gforge.inria.fr/frs/download.php/file/33979/%{name}-%{version}.tar.gz
 
 BuildRequires:  remake
 BuildRequires:  coq%{?_isa} = %{coqver}
@@ -57,7 +57,8 @@ cp -p src/Core/*.v $RPM_BUILD_ROOT%{flocqdir}/Core
 cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 
 %files
-%doc AUTHORS COPYING NEWS README html
+%doc AUTHORS NEWS README html
+%license COPYING
 %{flocqdir}
 %exclude %{flocqdir}/*.v
 %exclude %{flocqdir}/*/*.v
@@ -70,6 +71,10 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Tue Sep  2 2014 Jerry James <loganjerry@gmail.com> - 2.4.0-1
+- New upstream release
+- Fix license handling
+
 * Sat Aug 16 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.3.0-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
