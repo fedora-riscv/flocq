@@ -6,7 +6,7 @@
 
 Name:           flocq
 Version:        2.4.0
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 Group:          Applications/Engineering
@@ -71,6 +71,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Wed Jun 17 2015 Richard W.M. Jones <rjones@redhat.com> - 2.4.0-9
+- ocaml-4.02.2 rebuild.
+
 * Wed Jun 17 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.4.0-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
