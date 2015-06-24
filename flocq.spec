@@ -6,7 +6,7 @@
 
 Name:           flocq
 Version:        2.4.0
-Release:        9%{?dist}
+Release:        10%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 Group:          Applications/Engineering
@@ -71,6 +71,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Wed Jun 24 2015 Richard W.M. Jones <rjones@redhat.com> - 2.4.0-10
+- ocaml-4.02.2 final rebuild.
+
 * Wed Jun 17 2015 Richard W.M. Jones <rjones@redhat.com> - 2.4.0-9
 - ocaml-4.02.2 rebuild.
 
