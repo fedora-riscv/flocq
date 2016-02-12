@@ -2,20 +2,20 @@
 # location, so we build it as an arch-specific package.
 %global debug_package %{nil}
 %global flocqdir %{_libdir}/coq/user-contrib/Flocq
-%global coqver 8.4pl6
+%global coqver 8.5
 
 Name:           flocq
-Version:        2.5.0
-Release:        2%{?dist}
+Version:        2.5.1
+Release:        1%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 Group:          Applications/Engineering
 License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
-Source0:        https://gforge.inria.fr/frs/download.php/file/35091/%{name}-%{version}.tar.gz
+Source0:        https://gforge.inria.fr/frs/download.php/file/35430/%{name}-%{version}.tar.gz
 
 BuildRequires:  remake
-BuildRequires:  coq%{?_isa} = %{coqver}
+BuildRequires:  coq = %{coqver}
 Requires:       coq%{?_isa} = %{coqver}
 
 %description
@@ -71,6 +71,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Fri Feb 12 2016 Jerry James <loganjerry@gmail.com> - 2.5.1-1
+- New upstream release
+
 * Wed Feb 03 2016 Fedora Release Engineering <releng@fedoraproject.org> - 2.5.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
