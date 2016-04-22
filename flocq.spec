@@ -2,14 +2,13 @@
 # location, so we build it as an arch-specific package.
 %global debug_package %{nil}
 %global flocqdir %{_libdir}/coq/user-contrib/Flocq
-%global coqver 8.5
+%global coqver 8.5pl1
 
 Name:           flocq
 Version:        2.5.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
-Group:          Applications/Engineering
 License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
 Source0:        https://gforge.inria.fr/frs/download.php/file/35430/%{name}-%{version}.tar.gz
@@ -71,6 +70,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Fri Apr 22 2016 Jerry James <loganjerry@gmail.com> - 2.5.1-2
+- Rebuild for coq 8.5pl1
+
 * Fri Feb 12 2016 Jerry James <loganjerry@gmail.com> - 2.5.1-1
 - New upstream release
 
