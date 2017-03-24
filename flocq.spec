@@ -6,7 +6,7 @@
 
 Name:           flocq
 Version:        2.5.2
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -70,6 +70,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Fri Mar 24 2017 Jerry James <loganjerry@gmail.com> - 2.5.2-6
+- Rebuild to fix coq consistency issue
+
 * Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.5.2-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
