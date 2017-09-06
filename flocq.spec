@@ -2,11 +2,11 @@
 # location, so we build it as an arch-specific package.
 %global debug_package %{nil}
 %global flocqdir %{_libdir}/coq/user-contrib/Flocq
-%global coqver 8.6
+%global coqver 8.6.1
 
 Name:           flocq
 Version:        2.5.2
-Release:        11%{?dist}
+Release:        12%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -70,6 +70,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Wed Sep 06 2017 Richard W.M. Jones <rjones@redhat.com> - 2.5.2-12
+- OCaml 4.05.0 rebuild.
+
 * Wed Aug 02 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.5.2-11
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
