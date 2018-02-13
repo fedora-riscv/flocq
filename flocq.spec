@@ -2,11 +2,11 @@
 # location, so we build it as an arch-specific package.
 %global debug_package %{nil}
 %global flocqdir %{_libdir}/coq/user-contrib/Flocq
-%global coqver 8.6.1
+%global coqver 8.7.1
 
 Name:           flocq
 Version:        2.6.0
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -42,7 +42,7 @@ purposes.
 # Use the system remake
 rm -f remake
 ln -s %{_bindir}/remake remake
-remake %{?_smp_mflags} all doc
+remake -d %{?_smp_mflags} all doc
 
 %install
 sed -i "s,%{_libdir},$RPM_BUILD_ROOT%{_libdir}," Remakefile
@@ -70,6 +70,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Mon Feb 12 2018 Jerry James <loganjerry@gmail.com> - 2.6.0-6
+- Rebuild for coq 8.7.1
+
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.6.0-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
