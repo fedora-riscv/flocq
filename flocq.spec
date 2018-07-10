@@ -13,6 +13,7 @@ License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
 Source0:        https://gforge.inria.fr/frs/download.php/file/37054/%{name}-%{version}.tar.gz
 
+BuildRequires:  gcc-c++
 BuildRequires:  remake
 BuildRequires:  coq = %{coqver}
 Requires:       coq%{?_isa} = %{coqver}
