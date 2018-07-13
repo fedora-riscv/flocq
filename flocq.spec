@@ -6,7 +6,7 @@
 
 Name:           flocq
 Version:        2.6.0
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -71,6 +71,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.6.0-9
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
 * Wed Jul 11 2018 Richard W.M. Jones <rjones@redhat.com> - 2.6.0-8
 - OCaml 4.07.0 (final) rebuild.
 
