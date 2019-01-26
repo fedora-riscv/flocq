@@ -73,7 +73,7 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
-* Sat Jan 26 2018 Jerry James <loganjerry@gmail.com> - 3.0.0-1
+* Sat Jan 26 2019 Jerry James <loganjerry@gmail.com> - 3.0.0-1
 - New upstream release
 
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.6.0-9
