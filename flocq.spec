@@ -2,16 +2,16 @@
 # location, so we build it as an arch-specific package.
 %global debug_package %{nil}
 %global flocqdir %{_libdir}/coq/user-contrib/Flocq
-%global coqver 8.7.1
+%global coqver 8.8.2
 
 Name:           flocq
-Version:        2.6.0
-Release:        9%{?dist}
+Version:        3.0.0
+Release:        1%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
-Source0:        https://gforge.inria.fr/frs/download.php/file/37054/%{name}-%{version}.tar.gz
+Source0:        https://gforge.inria.fr/frs/download.php/file/37477/%{name}-%{version}.tar.gz
 
 BuildRequires:  gcc-c++
 BuildRequires:  remake
@@ -51,13 +51,14 @@ remake install
 
 # Also install the source files
 cp -p src/*.v $RPM_BUILD_ROOT%{flocqdir}
-cp -p src/Appli/*.v $RPM_BUILD_ROOT%{flocqdir}/Appli
 cp -p src/Calc/*.v $RPM_BUILD_ROOT%{flocqdir}/Calc
 cp -p src/Core/*.v $RPM_BUILD_ROOT%{flocqdir}/Core
+cp -p src/IEEE754/*.v $RPM_BUILD_ROOT%{flocqdir}/IEEE754
+cp -p src/Pff/*.v $RPM_BUILD_ROOT%{flocqdir}/Pff
 cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 
 %files
-%doc AUTHORS NEWS README html
+%doc AUTHORS NEWS.md README.md html
 %license COPYING
 %{flocqdir}
 %exclude %{flocqdir}/*.v
@@ -65,12 +66,16 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 
 %files source
 %{flocqdir}/*.v
-%{flocqdir}/Appli/*.v
 %{flocqdir}/Calc/*.v
 %{flocqdir}/Core/*.v
+%{flocqdir}/IEEE754/*.v
+%{flocqdir}/Pff/*.v
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Sat Jan 26 2018 Jerry James <loganjerry@gmail.com> - 3.0.0-1
+- New upstream release
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.6.0-9
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
