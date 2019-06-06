@@ -2,16 +2,16 @@
 # location, so we build it as an arch-specific package.
 %global debug_package %{nil}
 %global flocqdir %{_libdir}/coq/user-contrib/Flocq
-%global coqver 8.8.2
+%global coqver 8.9.1
 
 Name:           flocq
-Version:        3.0.0
-Release:        2%{?dist}
+Version:        3.1.0
+Release:        1%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
-Source0:        https://gforge.inria.fr/frs/download.php/file/37477/%{name}-%{version}.tar.gz
+Source0:        https://gforge.inria.fr/frs/download.php/file/37901/%{name}-%{version}.tar.gz
 
 BuildRequires:  gcc-c++
 BuildRequires:  remake
@@ -73,6 +73,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Wed Jun  5 2019 Jerry James <loganjerry@gmail.com> - 3.1.0-1
+- New upstream release
+
 * Thu Jan 31 2019 Fedora Release Engineering <releng@fedoraproject.org> - 3.0.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
