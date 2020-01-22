@@ -6,7 +6,7 @@
 
 Name:           flocq
 Version:        3.2.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -73,6 +73,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Wed Jan 22 2020 Jerry James <loganjerry@gmail.com> - 3.2.0-4
+- OCaml 4.10.0+beta1 rebuild.
+
 * Fri Dec 06 2019 Richard W.M. Jones <rjones@redhat.com> - 3.2.0-3
 - OCaml 4.09.0 (final) rebuild.
 
