@@ -1,12 +1,17 @@
-# This package is really noarch, but it has to be installed in an arch-specific
-# location, so we build it as an arch-specific package.
+# On platforms with a native OCaml compiler, proofs can be compiled into cmxs
+# files, but there are no source files that rpm recognizes as such.
+%ifarch %{ocaml_native_compiler}
+%global _debugsource_template %{nil}
+%else
 %global debug_package %{nil}
+%endif
+
 %global flocqdir %{_libdir}/coq/user-contrib/Flocq
-%global coqver 8.9.1
+%global coqver 8.11.0
 
 Name:           flocq
 Version:        3.2.0
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -16,6 +21,8 @@ Source0:        https://gforge.inria.fr/frs/download.php/file/38103/%{name}-%{ve
 BuildRequires:  gcc-c++
 BuildRequires:  remake
 BuildRequires:  coq = %{coqver}
+BuildRequires:  ocaml
+BuildRequires:  ocaml-findlib
 Requires:       coq%{?_isa} = %{coqver}
 
 %description
@@ -35,6 +42,11 @@ purposes.
 
 %prep
 %setup -q
+
+# Force native compilation when available
+%ifarch %{ocaml_native_compiler}
+sed -i 's/@COQC@ -R src Flocq/& -native-compiler yes/' Remakefile.in
+%endif
 
 %build
 # We do NOT want to specify --libdir, and we don't need CFLAGS, etc.
@@ -73,6 +85,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Mon Mar 23 2020 Jerry James <loganjerry@gmail.com> - 3.2.0-6
+- Rebuild for coq 8.11.0
+
 * Tue Jan 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 3.2.0-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
