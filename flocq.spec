@@ -11,12 +11,15 @@
 
 Name:           flocq
 Version:        3.2.0
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
 Source0:        https://gforge.inria.fr/frs/download.php/file/38103/%{name}-%{version}.tar.gz
+# Register names used by gappalib-coq, needed for coq 8.11 support
+# https://github.com/MSoegtropIMC/flocq/commit/66482a0775e39770dde8bebc4c896d8d47980e1a
+Patch0:         %{name}-coq811.patch
 
 BuildRequires:  gcc-c++
 BuildRequires:  remake
@@ -41,7 +44,7 @@ not needed to use flocq.  They are made available for informational
 purposes.
 
 %prep
-%setup -q
+%autosetup -p1
 
 # Force native compilation when available
 %ifarch %{ocaml_native_compiler}
@@ -85,6 +88,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Mon Mar 30 2020 Jerry James <loganjerry@gmail.com> - 3.2.0-7
+- Add -coq811 patch so gappalib-coq can be built with coq 8.11
+
 * Mon Mar 23 2020 Jerry James <loganjerry@gmail.com> - 3.2.0-6
 - Rebuild for coq 8.11.0
 
