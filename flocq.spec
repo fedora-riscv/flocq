@@ -6,7 +6,7 @@
 
 Name:           flocq
 Version:        3.2.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -73,6 +73,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Fri Apr 10 2020 Jerry James <loganjerry@gmail.com> - 3.2.0-2
+- Rebuild to fix inconsistent assumption problem on arm platforms
+
 * Thu Aug  1 2019 Jerry James <loganjerry@gmail.com> - 3.2.0-1
 - New upstream release
 
