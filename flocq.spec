@@ -7,11 +7,11 @@
 %endif
 
 %global flocqdir %{_libdir}/coq/user-contrib/Flocq
-%global coqver 8.11.0
+%global coqver 8.11.1
 
 Name:           flocq
 Version:        3.2.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -85,6 +85,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Wed May 20 2020 Jerry James <loganjerry@gmail.com> - 3.2.1-2
+- Rebuild for coq 8.11.1
+
 * Wed Apr  8 2020 Jerry James <loganjerry@gmail.com> - 3.2.1-1
 - Version 3.2.1
 
