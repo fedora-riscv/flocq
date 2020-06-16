@@ -7,16 +7,16 @@
 %endif
 
 %global flocqdir %{_libdir}/coq/user-contrib/Flocq
-%global coqver 8.11.1
+%global coqver 8.11.2
 
 Name:           flocq
-Version:        3.2.1
-Release:        2%{?dist}
+Version:        3.3.1
+Release:        1%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
-Source0:        https://gforge.inria.fr/frs/download.php/file/38301/%{name}-%{version}.tar.gz
+Source0:        https://gforge.inria.fr/frs/download.php/file/38329/%{name}-%{version}.tar.gz
 
 BuildRequires:  gcc-c++
 BuildRequires:  remake
@@ -45,7 +45,7 @@ purposes.
 
 # Force native compilation when available
 %ifarch %{ocaml_native_compiler}
-sed -i 's/@COQC@ -R src Flocq/& -native-compiler yes/' Remakefile.in
+sed -i 's/@COQC@.* -R src Flocq/& -native-compiler yes/' Remakefile.in
 %endif
 
 %build
@@ -85,6 +85,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Mon Jun 15 2020 Jerry James <loganjerry@gmail.com> - 3.3.1-1
+- Version 3.3.1
+
 * Wed May 20 2020 Jerry James <loganjerry@gmail.com> - 3.2.1-2
 - Rebuild for coq 8.11.1
 
