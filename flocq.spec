@@ -6,8 +6,8 @@
 %global debug_package %{nil}
 %endif
 
-%global flocqdir %{_libdir}/coq/user-contrib/Flocq
-%global coqver 8.11.2
+%global flocqdir %{_libdir}/ocaml/coq/user-contrib/Flocq
+%global coqver 8.12.0
 
 Name:           flocq
 Version:        3.3.1
@@ -18,6 +18,7 @@ License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
 Source0:        https://gforge.inria.fr/frs/download.php/file/38329/%{name}-%{version}.tar.gz
 
+BuildArch:      noarch
 BuildRequires:  gcc-c++
 BuildRequires:  remake
 BuildRequires:  coq = %{coqver}
@@ -43,11 +44,6 @@ purposes.
 %prep
 %autosetup -p1
 
-# Force native compilation when available
-%ifarch %{ocaml_native_compiler}
-sed -i 's/@COQC@.* -R src Flocq/& -native-compiler yes/' Remakefile.in
-%endif
-
 %build
 # We do NOT want to specify --libdir, and we don't need CFLAGS, etc.
 ./configure
@@ -69,6 +65,9 @@ cp -p src/IEEE754/*.v $RPM_BUILD_ROOT%{flocqdir}/IEEE754
 cp -p src/Pff/*.v $RPM_BUILD_ROOT%{flocqdir}/Pff
 cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 
+# And the opam file
+cp -p opam $RPM_BUILD_ROOT%{flocqdir}
+
 %files
 %doc AUTHORS NEWS.md README.md html
 %license COPYING
@@ -85,6 +84,10 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Tue Sep  1 2020 Jerry James <loganjerry@gmail.com> - 3.3.1-5
+- Rebuild for coq 8.12.0
+- Revert to a noarch package
+
 * Sat Aug 22 2020 Richard W.M. Jones <rjones@redhat.com> - 3.3.1-5
 - OCaml 4.11.0 rebuild
 
