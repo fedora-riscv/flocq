@@ -18,7 +18,9 @@ License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
 Source0:        https://gforge.inria.fr/frs/download.php/file/38329/%{name}-%{version}.tar.gz
 
-BuildArch:      noarch
+# https://bugzilla.redhat.com/show_bug.cgi?id=1874879
+ExcludeArch:    s390x
+
 BuildRequires:  gcc-c++
 BuildRequires:  remake
 BuildRequires:  coq = %{coqver}
@@ -43,6 +45,14 @@ purposes.
 
 %prep
 %autosetup -p1
+
+# Force native compilation when available
+# XXX Unfortunately this does not work at the moment:
+# Error: Unbound module NCoq_Numbers_BinNums
+# Error: Native compiler exited with status 2
+#ifarch %%{ocaml_native_compiler}
+#sed -i 's/@COQC@.* -R src Flocq/& -native-compiler yes/' Remakefile.in
+#endif
 
 %build
 # We do NOT want to specify --libdir, and we don't need CFLAGS, etc.
@@ -86,6 +96,7 @@ cp -p opam $RPM_BUILD_ROOT%{flocqdir}
 %changelog
 * Wed Sep 02 2020 Richard W.M. Jones <rjones@redhat.com> - 3.3.1-6.1
 - Bump release and rebuild.
+- Disable noarch, but don't enable native builds.
 
 * Wed Sep 02 2020 Richard W.M. Jones <rjones@redhat.com> - 3.3.1-6
 - OCaml 4.11.1 rebuild
