@@ -1,30 +1,28 @@
-# On platforms with a native OCaml compiler, proofs can be compiled into cmxs
-# files, but there are no source files that rpm recognizes as such.
-%ifarch %{ocaml_native_compiler}
-%global _debugsource_template %{nil}
-%else
+# This package is installed into an archful location, but contains no ELF
+# objects.
 %global debug_package %{nil}
-%endif
 
 %global flocqdir %{_libdir}/ocaml/coq/user-contrib/Flocq
 %global coqver 8.12.0
 
 Name:           flocq
 Version:        3.3.1
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
 Source0:        https://gforge.inria.fr/frs/download.php/file/38329/%{name}-%{version}.tar.gz
 
-BuildArch:      noarch
 BuildRequires:  gcc-c++
 BuildRequires:  remake
 BuildRequires:  coq = %{coqver}
 BuildRequires:  ocaml
 BuildRequires:  ocaml-findlib
 Requires:       coq%{?_isa} = %{coqver}
+
+# https://bugzilla.redhat.com/show_bug.cgi?id=1874879
+ExcludeArch:    s390x
 
 %description
 Flocq (Floats for Coq) is a floating-point formalization for the Coq
@@ -84,6 +82,10 @@ cp -p opam $RPM_BUILD_ROOT%{flocqdir}
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Fri Sep 25 2020 Jerry James <loganjerry@gmail.com> - 3.3.1-7
+- Flocq is installed in an archful directory, so cannot be noarch
+- ExcludeArch s390x due to bz 1874879
+
 * Wed Sep 02 2020 Richard W.M. Jones <rjones@redhat.com> - 3.3.1-6
 - OCaml 4.11.1 rebuild
 
