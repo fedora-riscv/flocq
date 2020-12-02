@@ -3,11 +3,11 @@
 %global debug_package %{nil}
 
 %global flocqdir %{_libdir}/ocaml/coq/user-contrib/Flocq
-%global coqver 8.12.0
+%global coqver 8.12.1
 
 Name:           flocq
 Version:        3.3.1
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -82,6 +82,9 @@ cp -p opam $RPM_BUILD_ROOT%{flocqdir}
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Wed Dec  2 2020 Jerry James <loganjerry@gmail.com> - 3.3.1-8
+- Rebuild for coq 8.12.1
+
 * Fri Sep 25 2020 Jerry James <loganjerry@gmail.com> - 3.3.1-7
 - Flocq is installed in an archful directory, so cannot be noarch
 - ExcludeArch s390x due to bz 1874879
