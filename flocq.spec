@@ -3,11 +3,11 @@
 %global debug_package %{nil}
 
 %global flocqdir %{_libdir}/ocaml/coq/user-contrib/Flocq
-%global coqver 8.12.2
+%global coqver 8.13.0
 
 Name:           flocq
 Version:        3.4.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -41,6 +41,11 @@ purposes.
 
 %prep
 %autosetup -p1
+
+# Force native compilation when available
+%ifarch %{ocaml_native_compiler}
+sed -i 's/@COQC@.* -R src Flocq/& -native-compiler yes/' Remakefile.in
+%endif
 
 %build
 # We do NOT want to specify --libdir, and we don't need CFLAGS, etc.
@@ -79,6 +84,10 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Sat Feb 20 2021 Jerry James <loganjerry@gmail.com> - 3.4.0-3
+- Rebuild for coq 8.13.0
+- Use native compilation when available
+
 * Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 3.4.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
