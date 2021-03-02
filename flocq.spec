@@ -7,7 +7,7 @@
 
 Name:           flocq
 Version:        3.4.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -84,6 +84,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Tue Mar  2 11:03:43 GMT 2021 Richard W.M. Jones <rjones@redhat.com> - 3.4.0-4
+- OCaml 4.12.0 build
+
 * Sat Feb 20 2021 Jerry James <loganjerry@gmail.com> - 3.4.0-3
 - Rebuild for coq 8.13.0
 - Use native compilation when available
