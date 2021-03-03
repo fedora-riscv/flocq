@@ -3,11 +3,11 @@
 %global debug_package %{nil}
 
 %global flocqdir %{_libdir}/ocaml/coq/user-contrib/Flocq
-%global coqver 8.13.0
+%global coqver 8.13.1
 
 Name:           flocq
 Version:        3.4.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -84,6 +84,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Wed Mar  3 2021 Jerry James <loganjerry@gmail.com> - 3.4.0-4
+- Rebuild for coq 8.13.1 and ocaml-zarith 1.12
+
 * Sat Feb 20 2021 Jerry James <loganjerry@gmail.com> - 3.4.0-3
 - Rebuild for coq 8.13.0
 - Use native compilation when available
