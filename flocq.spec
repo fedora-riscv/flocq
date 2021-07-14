@@ -6,13 +6,13 @@
 %global coqver 8.13.2
 
 Name:           flocq
-Version:        3.4.0
-Release:        6%{?dist}
+Version:        3.4.2
+Release:        1%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
 URL:            http://flocq.gforge.inria.fr/
-Source0:        https://gforge.inria.fr/frs/download.php/file/38385/%{name}-%{version}.tar.gz
+Source0:        https://gforge.inria.fr/frs/download.php/file/38444/%{name}-%{version}.tar.gz
 
 BuildRequires:  gcc-c++
 BuildRequires:  remake
@@ -84,6 +84,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Wed Jul 14 2021 Jerry James <loganjerry@gmail.com> - 3.4.2-1
+- Version 3.4.2
+
 * Tue Jun  8 2021 Jerry James <loganjerry@gmail.com> - 3.4.0-6
 - Rebuild for coq 8.13.2
 
