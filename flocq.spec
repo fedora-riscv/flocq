@@ -7,7 +7,7 @@
 
 Name:           flocq
 Version:        3.4.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -84,6 +84,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Fri Jul 30 2021 Jerry James <loganjerry@gmail.com> - 3.4.2-2
+- Rebuild for rebuilt coq
+
 * Wed Jul 21 2021 Fedora Release Engineering <releng@fedoraproject.org> - 3.4.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
