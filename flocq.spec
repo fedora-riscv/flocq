@@ -7,7 +7,7 @@
 
 Name:           flocq
 Version:        3.4.2
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -20,9 +20,6 @@ BuildRequires:  coq = %{coqver}
 BuildRequires:  ocaml
 BuildRequires:  ocaml-findlib
 Requires:       coq%{?_isa} = %{coqver}
-
-# https://bugzilla.redhat.com/show_bug.cgi?id=1874879
-ExcludeArch:    s390x
 
 %description
 Flocq (Floats for Coq) is a floating-point formalization for the Coq
@@ -84,6 +81,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Mon Oct 04 2021 Richard W.M. Jones <rjones@redhat.com> - 3.4.2-4
+- Try to build on s390x with OCaml 4.13
+
 * Fri Jul 30 2021 Jerry James <loganjerry@gmail.com> - 3.4.2-2
 - Rebuild for rebuilt coq
 
