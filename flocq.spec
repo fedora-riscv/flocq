@@ -3,17 +3,19 @@
 %global debug_package %{nil}
 
 %global flocqdir %{_libdir}/ocaml/coq/user-contrib/Flocq
-%global coqver 8.13.2
+%global coqver  8.14.0
+%global commit  ca655d2542bdcf024bce5c26dbc0f13b856aa1f6
 
 Name:           flocq
 Version:        3.4.2
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
-URL:            http://flocq.gforge.inria.fr/
-Source0:        https://gforge.inria.fr/frs/download.php/file/38444/%{name}-%{version}.tar.gz
+URL:            https://gitlab.inria.fr/flocq/flocq
+Source0:        %{url}/-/archive/%{name}-%{version}/%{name}-%{version}.tar.gz
 
+BuildRequires:  autoconf
 BuildRequires:  gcc-c++
 BuildRequires:  remake
 BuildRequires:  coq = %{coqver}
@@ -37,12 +39,15 @@ not needed to use flocq.  They are made available for informational
 purposes.
 
 %prep
-%autosetup -p1
+%autosetup -n %{name}-%{name}-%{version}-%{commit}
 
 # Force native compilation when available
 %ifarch %{ocaml_native_compiler}
 sed -i 's/@COQC@.* -R src Flocq/& -native-compiler yes/' Remakefile.in
 %endif
+
+# Generate the configure script
+autoconf -f
 
 %build
 # We do NOT want to specify --libdir, and we don't need CFLAGS, etc.
@@ -81,6 +86,10 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Thu Oct 21 2021 Jerry James <loganjerry@gmail.com> - 3.4.2-6
+- Rebuild for coq 8.14.0
+- New URLs
+
 * Tue Oct 05 2021 Richard W.M. Jones <rjones@redhat.com> - 3.4.2-5
 - OCaml 4.13.1 build
 
