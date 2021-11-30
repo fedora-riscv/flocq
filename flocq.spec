@@ -3,12 +3,12 @@
 %global debug_package %{nil}
 
 %global flocqdir %{_libdir}/ocaml/coq/user-contrib/Flocq
-%global coqver  8.14.0
+%global coqver  8.14.1
 %global commit  ca655d2542bdcf024bce5c26dbc0f13b856aa1f6
 
 Name:           flocq
 Version:        3.4.2
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -86,6 +86,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Tue Nov 30 2021 Jerry James <loganjerry@gmail.com> - 3.4.2-7
+- Rebuild for coq 8.14.1
+
 * Thu Oct 21 2021 Jerry James <loganjerry@gmail.com> - 3.4.2-6
 - Rebuild for coq 8.14.0
 - New URLs
