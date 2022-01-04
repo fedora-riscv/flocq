@@ -8,7 +8,7 @@
 
 Name:           flocq
 Version:        3.4.2
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -86,6 +86,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Mon Jan  3 2022 Jerry James <loganjerry@gmail.com> - 3.4.2-8
+- Rebuild due to rebuilt coq
+
 * Tue Nov 30 2021 Jerry James <loganjerry@gmail.com> - 3.4.2-7
 - Rebuild for coq 8.14.1
 
