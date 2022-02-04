@@ -1,3 +1,4 @@
+%undefine _package_note_flags
 # This package is installed into an archful location, but contains no ELF
 # objects.
 %global debug_package %{nil}
@@ -8,7 +9,7 @@
 
 Name:           flocq
 Version:        3.4.2
-Release:        9%{?dist}
+Release:        10%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -86,6 +87,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Fri Feb 04 2022 Richard W.M. Jones <rjones@redhat.com> - 3.4.2-10
+- OCaml 4.13.1 rebuild to remove package notes
+
 * Thu Jan 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 3.4.2-9
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
 
