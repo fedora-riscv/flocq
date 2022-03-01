@@ -1,15 +1,14 @@
-%undefine _package_note_flags
 # This package is installed into an archful location, but contains no ELF
 # objects.
 %global debug_package %{nil}
 
 %global flocqdir %{_libdir}/ocaml/coq/user-contrib/Flocq
-%global coqver  8.14.1
-%global commit  ca655d2542bdcf024bce5c26dbc0f13b856aa1f6
+%global coqver  8.15.0
+%global commit  088acf93bad22d2d9649f75495a2fe2d0a8cc31e
 
 Name:           flocq
-Version:        3.4.2
-Release:        10%{?dist}
+Version:        3.4.3
+Release:        1%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -41,6 +40,9 @@ purposes.
 
 %prep
 %autosetup -n %{name}-%{name}-%{version}-%{commit}
+
+# Point to the local coqdoc files
+sed -i 's,\(--coqlib \)[^[:blank:]]*,\1%{_libdir}/ocaml/coq,' Remakefile.in
 
 # Force native compilation when available
 %ifarch %{ocaml_native_compiler}
@@ -87,6 +89,10 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Mon Feb 28 2022 Jerry James <loganjerry@gmail.com> - 3.4.3-1
+- Version 3.4.3
+- Use local coqdoc files
+
 * Fri Feb 04 2022 Richard W.M. Jones <rjones@redhat.com> - 3.4.2-10
 - OCaml 4.13.1 rebuild to remove package notes
 
