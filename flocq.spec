@@ -5,7 +5,7 @@
 %undefine _package_note_flags
 
 %global flocqdir %{_libdir}/ocaml/coq/user-contrib/Flocq
-%global coqver  8.15.1
+%global coqver  8.15.2
 %global commit  088acf93bad22d2d9649f75495a2fe2d0a8cc31e
 
 Name:           flocq
