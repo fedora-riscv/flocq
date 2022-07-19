@@ -4,7 +4,7 @@
 
 %undefine _package_note_flags
 
-%global flocqdir %{_libdir}/ocaml/coq/user-contrib/Flocq
+%global flocqdir %{ocamldir}/coq/user-contrib/Flocq
 %global coqver  8.15.2
 %global commit  088acf93bad22d2d9649f75495a2fe2d0a8cc31e
 
@@ -16,6 +16,10 @@ Summary:        Formalization of floating point numbers for Coq
 License:        LGPLv3+
 URL:            https://gitlab.inria.fr/flocq/flocq
 Source0:        %{url}/-/archive/%{name}-%{version}/%{name}-%{version}.tar.gz
+
+# ANTLR is unavailable on i686, so coq is also unavailable
+# See https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs
+ExclusiveArch:  %{java_arches}
 
 BuildRequires:  autoconf
 BuildRequires:  gcc-c++
@@ -44,7 +48,7 @@ purposes.
 %autosetup -n %{name}-%{name}-%{version}-%{commit}
 
 # Point to the local coqdoc files
-sed -i 's,\(--coqlib \)[^[:blank:]]*,\1%{_libdir}/ocaml/coq,' Remakefile.in
+sed -i 's,\(--coqlib \)[^[:blank:]]*,\1%{ocamldir}/coq,' Remakefile.in
 
 # Force native compilation when available
 %ifarch %{ocaml_native_compiler}
@@ -91,6 +95,10 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Tue Jul 19 2022 Jerry James <loganjerry@gmail.com> - 3.4.3-3
+- Remove i686 support
+- Use new OCaml macros
+
 * Sun Jun 19 2022 Richard W.M. Jones <rjones@redhat.com> - 3.4.3-3
 - OCaml 4.14.0 rebuild
 
