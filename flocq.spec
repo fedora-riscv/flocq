@@ -10,7 +10,7 @@
 
 Name:           flocq
 Version:        3.4.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPLv3+
@@ -95,6 +95,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Thu Jul 21 2022 Fedora Release Engineering <releng@fedoraproject.org> - 3.4.3-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
+
 * Tue Jul 19 2022 Jerry James <loganjerry@gmail.com> - 3.4.3-3
 - Remove i686 support
 - Use new OCaml macros
