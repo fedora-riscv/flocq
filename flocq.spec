@@ -10,10 +10,10 @@
 
 Name:           flocq
 Version:        3.4.3
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
-License:        LGPLv3+
+License:        LGPL-3.0-or-later
 URL:            https://gitlab.inria.fr/flocq/flocq
 Source0:        %{url}/-/archive/%{name}-%{version}/%{name}-%{version}.tar.gz
 
@@ -95,6 +95,10 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Thu Aug 18 2022 Jerry James <loganjerry@gmail.com> - 3.4.3-5
+- Rebuild to fix coq dependency
+- Convert License tag to SPDX
+
 * Thu Jul 21 2022 Fedora Release Engineering <releng@fedoraproject.org> - 3.4.3-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
 
