@@ -5,12 +5,12 @@
 %undefine _package_note_flags
 
 %global flocqdir %{ocamldir}/coq/user-contrib/Flocq
-%global coqver  8.15.2
-%global commit  088acf93bad22d2d9649f75495a2fe2d0a8cc31e
+%global coqver  8.16.0
+%global commit  0188199cb28d89a73937d009d935b016e2d394b5
 
 Name:           flocq
-Version:        3.4.3
-Release:        5%{?dist}
+Version:        4.1.0
+Release:        1%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPL-3.0-or-later
@@ -95,6 +95,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Fri Sep 16 2022 Jerry James <loganjerry@gmail.com> - 4.1.0-1
+- Version 4.1.0
+
 * Thu Aug 18 2022 Jerry James <loganjerry@gmail.com> - 3.4.3-5
 - Rebuild to fix coq dependency
 - Convert License tag to SPDX
