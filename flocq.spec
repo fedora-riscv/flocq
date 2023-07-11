@@ -1,3 +1,6 @@
+# OCaml packages not built on i686 since OCaml 5 / Fedora 39.
+ExcludeArch: %{ix86}
+
 # This package is installed into an archful location, but contains no ELF
 # objects.
 %global debug_package %{nil}
