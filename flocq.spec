@@ -2,15 +2,13 @@
 # objects.
 %global debug_package %{nil}
 
-%undefine _package_note_flags
-
 %global flocqdir %{ocamldir}/coq/user-contrib/Flocq
-%global coqver  8.17.0
+%global coqver  8.17.1
 %global commit  eb9be7d328d3521208834e5a9f326fc56fc2acea
 
 Name:           flocq
 Version:        4.1.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPL-3.0-or-later
@@ -49,11 +47,6 @@ purposes.
 
 # Point to the local coqdoc files
 sed -i 's,\(--coqlib \)[^[:blank:]]*,\1%{ocamldir}/coq,' Remakefile.in
-
-# Force native compilation when available
-%ifarch %{ocaml_native_compiler}
-sed -i 's/@COQC@.* -R src Flocq/& -native-compiler yes/' Remakefile.in
-%endif
 
 # Generate the configure script
 autoconf -f
@@ -95,6 +88,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Mon Jul 10 2023 Jerry James <loganjerry@gmail.com> - 4.1.1-2
+- OCaml 5.0.0 rebuild
+
 * Sat Apr  1 2023 Jerry James <loganjerry@gmail.com> - 4.1.1-1
 - Version 4.1.1
 
