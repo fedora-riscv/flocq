@@ -1,6 +1,10 @@
 # Coq's plugin architecture requires cmxs files, so:
 ExclusiveArch: %{ocaml_native_compiler}
 
+# ANTLR is unavailable on i686, so coq is also unavailable
+# See https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs
+#ExclusiveArch:  %%{java_arches}
+
 # This package is installed into an archful location, but contains no ELF
 # objects.
 %global debug_package %{nil}
@@ -17,10 +21,6 @@ Summary:        Formalization of floating point numbers for Coq
 License:        LGPL-3.0-or-later
 URL:            https://gitlab.inria.fr/flocq/flocq
 Source0:        %{url}/-/archive/%{name}-%{version}/%{name}-%{version}.tar.gz
-
-# ANTLR is unavailable on i686, so coq is also unavailable
-# See https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs
-ExclusiveArch:  %{java_arches}
 
 BuildRequires:  autoconf
 BuildRequires:  gcc-c++
