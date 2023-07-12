@@ -1,5 +1,5 @@
-# OCaml packages not built on i686 since OCaml 5 / Fedora 39.
-ExcludeArch: %{ix86}
+# Coq's plugin architecture requires cmxs files, so:
+ExclusiveArch: %{ocaml_native_compiler}
 
 # This package is installed into an archful location, but contains no ELF
 # objects.
