@@ -11,7 +11,7 @@ ExcludeArch: %{ix86}
 
 Name:           flocq
 Version:        4.1.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPL-3.0-or-later
@@ -91,6 +91,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Wed Jul 12 2023 Richard W.M. Jones <rjones@redhat.com> - 4.1.1-3
+- OCaml 5.0 rebuild for Fedora 39
+
 * Mon Jul 10 2023 Jerry James <loganjerry@gmail.com> - 4.1.1-2
 - OCaml 5.0.0 rebuild
 
