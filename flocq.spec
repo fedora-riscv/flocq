@@ -1,21 +1,17 @@
 # Coq's plugin architecture requires cmxs files, so:
 ExclusiveArch: %{ocaml_native_compiler}
 
-# ANTLR is unavailable on i686, so coq is also unavailable
-# See https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs
-#ExclusiveArch:  %%{java_arches}
-
 # This package is installed into an archful location, but contains no ELF
 # objects.
 %global debug_package %{nil}
 
 %global flocqdir %{ocamldir}/coq/user-contrib/Flocq
-%global coqver  8.17.1
-%global commit  eb9be7d328d3521208834e5a9f326fc56fc2acea
+%global coqver  8.18.0
+%global commit  5162468486c3a4ac0d4b3ea2b587d952b3e22ec3
 
 Name:           flocq
-Version:        4.1.1
-Release:        5%{?dist}
+Version:        4.1.3
+Release:        1%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPL-3.0-or-later
@@ -91,6 +87,9 @@ cp -p src/Prop/*.v $RPM_BUILD_ROOT%{flocqdir}/Prop
 %{flocqdir}/Prop/*.v
 
 %changelog
+* Tue Jan  2 2024 Jerry James <loganjerry@gmail.com> - 4.1.3-1
+- Version 4.1.3
+
 * Thu Jul 27 2023 Jerry James <loganjerry@gmail.com> - 4.1.1-5
 - Rebuild for ocaml-zarith 1.13
 
