@@ -1,5 +1,5 @@
 # Coq's plugin architecture requires cmxs files, so:
-ExclusiveArch: %{ocaml_native_compiler}
+ExclusiveArch: %{ocaml_native_compiler} riscv64
 
 # This package is installed into an archful location, but contains no ELF
 # objects.
@@ -11,7 +11,7 @@ ExclusiveArch: %{ocaml_native_compiler}
 
 Name:           flocq
 Version:        4.1.4
-Release:        1%{?dist}
+Release:        1.rv64%{?dist}
 Summary:        Formalization of floating point numbers for Coq
 
 License:        LGPL-3.0-or-later
